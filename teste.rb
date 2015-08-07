@@ -1,39 +1,43 @@
 require 'rubygems'
 
-require_relative 'page_parser'
+require_relative 'dbz_page_parser'
 require_relative 'file_manager'
 
+class SeriesMonitor
 
-URL = 'http://animalog.tv/cat132'
-POST_SELECTOR = '.post'
+	def initialize(parser)
+		@parser = parser
+	end
 
-#TODO: generate filename according to serie
-FILE_NAME = "last_episode.txt" 
+	def notify_user(title)
+		puts "Episode available: #{title}"
+	end
+
+	
+	def start
+
+		#Creates file manager
+		file_manager = FileManager.new @parser.get_name
+
+		#Obtains id of last published post
+		last_id = @parser.get_last_post_id
+
+		#Obtains last retrieved id
+		last_stored_id = file_manager.get_last_id_from_file
 
 
-def notify_user(title)
-	puts "Episode available: #{title}"
+		#If there is a id store localy, check whether it's the same as the last post's
+		if last_stored_id.nil? or last_stored_id != last_id
+			notify_user @parser.get_description
+			file_manager.set_last_id_in_file last_id
+		end
+	end
+
 end
 
 #Creates parser
-parser = PageParser.new(URL,'.post')
+parser = DBZPageParser.new()
 
-#Creates file manager
-file_manager = FileManager.new FILE_NAME
-
-#Obtains id of last published post
-last_id = parser.get_last_post_id
-
-#Obtains last retrieved id
-last_stored_id = file_manager.get_last_id_from_file
-
-
-#If there is a id store localy, check whether it's the same as the last post's
-if last_stored_id.nil? or last_stored_id != last_id
-	notify_user parser.get_description
-	file_manager.set_last_id_in_file last_id
-end
-
-
-
+series_monitor = SeriesMonitor.new parser
+series_monitor.start
 
