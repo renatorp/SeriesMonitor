@@ -1,10 +1,26 @@
 GEM
   remote: https://rubygems.org/
+  remote: http://gems.neurogami.com/
   specs:
+    builder (3.2.2)
+    hoe (3.13.1)
+      rake (>= 0.8, < 11.0)
     mini_portile (0.6.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     nokogiri (1.6.6.2-java)
+    rake (10.4.2)
+    rawr (1.8.3)
+      rubyzip
+      user-choices
+    rubyzip (1.1.7)
+    s4t-utils (1.0.4)
+      hoe (>= 1.3.0)
+    user-choices (1.1.6.1)
+      builder (>= 2.1.2)
+      s4t-utils (>= 1.0.3)
+      xml-simple (>= 1.0.11)
+    xml-simple (1.1.5)
 
 PLATFORMS
   java
@@ -12,6 +28,7 @@ PLATFORMS
 
 DEPENDENCIES
   nokogiri
+  rawr!
 
 BUNDLED WITH
    1.10.6
