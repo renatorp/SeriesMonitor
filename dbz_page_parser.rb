@@ -1,6 +1,6 @@
 #file: dbz_page_parser.rb
 
-require_relative 'page_parser'
+require 'page_parser'
 
 class DBZPageParser < PageParser
 
@@ -26,5 +26,9 @@ class DBZPageParser < PageParser
 
 	def get_description
 		@post.css('a')[0]['title']
+	end
+
+	def get_link
+		@post.css('a')[0]['href']
 	end
 end

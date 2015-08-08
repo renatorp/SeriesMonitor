@@ -8,7 +8,7 @@ class PageParser
 
 	attr_accessor :post
 
-	def initialize
+	def parse
 		#TODO Treat exception
 		@page = Nokogiri::HTML(open(get_url))
 		@post = get_last_post
