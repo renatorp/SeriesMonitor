@@ -50,7 +50,18 @@ java -jar package/jar/SeriesMonitor.jar
 
 ### Running as a ruby application ###
 ~~~~
-bundle exec ruby src/main.rb
+bundle exec jrubyw src/main.rb
+~~~~
+
+### On Windows ###
+Download and install JRuby and execute the following commands in the windows prompt (cmd)
+
+~~~~
+gem install bundler
+git clone https://github.com/renatorp/SeriesMonitor.git
+cd SeriesMonitor
+bundle install
+bundle exec jrubyw src/main.rb
 ~~~~
 
 \* The jar file only runs when the lib folder is located in its directory (I know, its ugly ¬¬)
