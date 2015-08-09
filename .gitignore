@@ -1,6 +1,7 @@
 
 # Generated directories/files
 Rakefile
-./lib/
+/lib/
+/src/org
 
 package/classes/
