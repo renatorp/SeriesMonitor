@@ -32,10 +32,10 @@ gem install bundler
 
 4- Create ruby environment
 ~~~~
-mkdir project
-cd project
 git clone https://github.com/renatorp/SeriesMonitor.git
+cd SeriesMonitor
 bundle install
+rawr install
 ~~~~
 
 5- Generate executable
@@ -43,7 +43,7 @@ bundle install
 bundle exec rake rawr:jar
 ~~~~
 
-6- Run
+6- Run*
 ~~~~
 java -jar package/jar/SeriesMonitor.jar
 ~~~~
@@ -52,3 +52,5 @@ java -jar package/jar/SeriesMonitor.jar
 ~~~~
 bundle exec ruby src/main.rb
 ~~~~
+
+\* The jar file only runs when the lib folder is located in its directory (I know, its ugly ¬¬)
