@@ -15,7 +15,7 @@ parser = DBZPageParser.new()
 
 #Creates monitor
 series_monitor = SeriesMonitor.new parser
-series_monitor.interval = 5
+series_monitor.interval = 5  
 
 #Creates Tray Application
 app = TrayApplication.new("SeriesMonitor")
