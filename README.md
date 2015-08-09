@@ -64,4 +64,6 @@ bundle install
 bundle exec jrubyw src/main.rb
 ~~~~
 
+Create a .bat file with the last command in the startup folder (ex: C:\Users\Someone\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\ ) to start the program at the windows initialization.
+
 \* The jar file only runs when the lib folder is located in its directory (I know, its ugly ¬¬)
