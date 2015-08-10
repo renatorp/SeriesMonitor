@@ -64,6 +64,14 @@ bundle install
 bundle exec jrubyw src/main.rb
 ~~~~
 
-Create a .bat file with the last command in the startup folder (ex: C:\Users\Someone\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\ ) to start the program at the windows initialization.
+To start the program at the windows initialization, create a .VBS file with the following code to your startup folder (ex: C:\Users\Someone\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\ ).
+
+~~~~~
+series_monitor_path = "C:\temp\SeriesMonitor\"  '<<--- YOUR PATH HERE
+
+Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run """YOUR_PATH_HERE_TOO\seriesmonitor.bat """ & series_monitor_path, 0
+Set WshShell = Nothing
+~~~~
 
 \* The jar file only runs when the lib folder is located in its directory (I know, its ugly ¬¬)
