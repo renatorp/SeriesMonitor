@@ -40,8 +40,14 @@ class TrayApplication
   end
 
   def notify_user(caption, text, link)
-    @tray_icon.add_action_listener {Desktop.getDesktop().browse(java.net.URI.new(link))}
+    @tray_icon.add_action_listener {open_last_in_browser(link)}
     @tray_icon.displayMessage(caption, text, TrayIcon::MessageType::INFO)
   end
+
+ def open_last_in_browser(link)
+    if (link) 
+	Desktop.getDesktop().browse(java.net.URI.new(link))
+    end
+ end
 
 end

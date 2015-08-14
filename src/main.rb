@@ -15,11 +15,12 @@ parser = DBZPageParser.new()
 
 #Creates monitor
 series_monitor = SeriesMonitor.new parser
-series_monitor.interval = 5  
+#series_monitor.interval = 5  
 
 #Creates Tray Application
 app = TrayApplication.new("SeriesMonitor")
 app.icon_filename = "#{File.dirname(__FILE__)}/../images/075005-ultra-glossy-silver-button-icon-alphanumeric-letter-m.png"
+app.item('Abrir em browser') {app.open_last_in_browser(parser.get_link)}
 app.item('Exit') {java.lang.System::exit(0)}
 
 #Creates notification of episode available
