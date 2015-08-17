@@ -14,14 +14,23 @@ class SeriesMonitor
 		@parser = parser
 	end
 
-	def notify(title, link)
-		puts "Episode available: #{title}"
+	def call_notification_callback(message, link = nil)
 		if notification_callback
-			notification_callback.call("Novo episódio disponível: #{title}", link)
+			notification_callback.call(message, link)
 		end
 	end
 
-	
+	def notify(title, link)
+		puts "Episode available: #{title}"
+		call_notification_callback("Novo episódio disponível: #{title}", link)
+	end
+
+	def notifyError(message)
+		msg = "An error ocurred: #{message}"
+		puts msg
+		call_notification_callback msg
+	end
+
 	def start
 
 		#Creates file manager
@@ -29,19 +38,24 @@ class SeriesMonitor
 
 
 		while true
-			@parser.parse
+			begin
+				@parser.parse
 
-			#Obtains id of last published post
-			last_id = @parser.get_last_post_id
+				#Obtains id of last published post
+				last_id = @parser.get_last_post_id
 
-			#Obtains last retrieved id
-			last_stored_id = file_manager.get_last_id_from_file
+				#Obtains last retrieved id
+				last_stored_id = file_manager.get_last_id_from_file
 
 
-			#If there is a id store localy, check whether it's the same as the last post's
-			if last_stored_id.nil? or last_stored_id != last_id
-				notify(@parser.get_description,@parser.get_link)
-				file_manager.set_last_id_in_file last_id
+				#If there is a id store localy, check whether it's the same as the last post's
+				if last_stored_id.nil? or last_stored_id != last_id
+					notify(@parser.get_description,@parser.get_link)
+					file_manager.set_last_id_in_file last_id
+				end
+
+			rescue Exception => e
+				notifyError(e.message)
 			end
 
 			sleep @interval || DEFAULT_INTERVAL

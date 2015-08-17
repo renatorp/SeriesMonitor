@@ -46,7 +46,7 @@ class TrayApplication
 
  def open_last_in_browser(link)
     if (link) 
-	Desktop.getDesktop().browse(java.net.URI.new(link))
+	     Desktop.getDesktop().browse(java.net.URI.new(link))
     end
  end
 

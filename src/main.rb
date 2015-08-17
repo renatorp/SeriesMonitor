@@ -25,7 +25,7 @@ app.item('Exit') {java.lang.System::exit(0)}
 
 #Creates notification of episode available
 series_monitor.notification_callback = Proc.new do |msg, link|
-	app.notify_user("Episódio Disponível", msg, link)
+	app.notify_user("Series Monitor", msg, link)
 end
 
 app.run {series_monitor.start}
